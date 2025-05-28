@@ -2,14 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Customer extends Model
+class Customer extends Authenticatable
 {
-    protected $fillable = ['name', 'email', 'address'];
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
+     use Notifiable; 
+ 
+    protected $fillable = [ 
+        'name', 
+        'email', 
+        'address', 
+        'password', 
+    ]; 
+ 
+    protected $hidden = [ 
+        'password', 
+        'remember_token', 
+    ]; 
+ 
+    protected $casts = [ 
+        'email_verified_at' => 'datetime', 
+    ];
+
+    // protected $fillable = ['name', 'email', 'address'];
+
+    // public function orders()
+    // {
+    //     return $this->hasMany(Order::class);
+    // }
 }

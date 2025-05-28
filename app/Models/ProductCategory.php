@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductCategory extends Model
 {
-    protected $fillable = ['name'];
-
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'product_category_id');
-    }
+    use HasFactory;
+    protected $table = 'product_categories';
 }
